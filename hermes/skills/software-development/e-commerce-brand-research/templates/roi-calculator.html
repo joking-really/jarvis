@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BRAND_NAME - AI Automation ROI Calculator</title>
+<style>
+:root{--bg:#0A0A0F;--surface:#12121A;--text:#C0C0C8;--heading:#FFF;--cyan:#00D4FF;--orange:#F97316;--amber:#FBBF24;--success:#10B981}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;padding:20px}
+.container{max-width:900px;margin:0 auto}
+h1{color:var(--heading);text-align:center;margin-bottom:10px}
+.subtitle{text-align:center;color:var(--text);margin-bottom:40px}
+.card{background:var(--surface);border-radius:16px;padding:24px;margin-bottom:20px;border:1px solid rgba(255,255,255,.1)}
+.card h2{color:var(--heading);margin-bottom:16px;font-size:1.2rem}
+.input-group{margin-bottom:16px}
+.input-group label{display:block;margin-bottom:6px;font-size:.9rem}
+.input-group input{width:100%;padding:12px;background:#1A1A25;border:1px solid rgba(255,255,255,.1);border-radius:8px;color:var(--heading);font-size:1rem}
+.input-group input:focus{outline:none;border-color:var(--cyan)}
+.result-box{background:linear-gradient(135deg,rgba(0,212,255,.1),rgba(249,115,22,.1));border-radius:12px;padding:20px;margin-top:16px;border-left:4px solid var(--cyan)}
+.result-box h3{color:var(--heading);margin-bottom:8px}
+.result-amount{font-size:2rem;font-weight:700;color:var(--success);margin:8px 0}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.total-box{background:linear-gradient(135deg,var(--orange),var(--amber));color:#fff;padding:30px;border-radius:16px;text-align:center;margin-top:20px}
+.total-box h2{color:#fff;margin-bottom:10px}
+.total-amount{font-size:3rem;font-weight:800;color:#fff}
+.btn{background:var(--orange);color:#fff;border:none;padding:14px 32px;border-radius:12px;font-size:1rem;cursor:pointer;width:100%;margin-top:20px;font-weight:600}
+.btn:hover{background:var(--amber)}
+@media(max-width:768px){.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>BRAND_NAME AI Automation ROI Calculator</h1>
+<p class="subtitle">Estimate your revenue impact with AI automation</p>
+
+<div class="card">
+<h2>Business Inputs</h2>
+<div class="grid">
+<div class="input-group">
+<label>Monthly Website Visitors</label>
+<input type="number" id="visitors" value="10000" onchange="calculate()">
+</div>
+<div class="input-group">
+<label>Conversion Rate (%)</label>
+<input type="number" id="conversion" value="2" step="0.1" onchange="calculate()">
+</div>
+<div class="input-group">
+<label>Average Order Value (PKR)</label>
+<input type="number" id="aov" value="5000" onchange="calculate()">
+</div>
+<div class="input-group">
+<label>Cart Abandonment Rate (%)</label>
+<input type="number" id="abandonment" value="70" onchange="calculate()">
+</div>
+</div>
+</div>
+
+<div class="grid">
+<div class="card">
+<h2>AI Chatbot Impact</h2>
+<div class="result-box">
+<h3>Support Cost Savings</h3>
+<div class="result-amount" id="support-savings">PKR 0</div>
+</div>
+</div>
+<div class="card">
+<h2>Cart Recovery Impact</h2>
+<div class="result-box">
+<h3>Recovered Revenue</h3>
+<div class="result-amount" id="recovered">PKR 0</div>
+</div>
+</div>
+</div>
+
+<div class="total-box">
+<h2>Total Monthly Revenue Impact</h2>
+<div class="total-amount" id="total-impact">PKR 0</div>
+<p style="margin-top:10px">AI Automation Cost: <strong>PKR 82,500 ($300)</strong></p>
+<p>Net Monthly Benefit: <strong id="net-benefit">PKR 0</strong></p>
+<p>ROI: <strong id="roi">0%</strong></p>
+</div>
+
+<button class="btn" onclick="calculate()">Recalculate ROI</button>
+</div>
+
+<script>
+function formatMoney(amount) {
+return 'PKR ' + Math.round(amount).toLocaleString('en-PK');
+}
+
+function calculate() {
+const visitors = parseFloat(document.getElementById('visitors').value) || 0;
+const conversion = parseFloat(document.getElementById('conversion').value) || 0;
+const aov = parseFloat(document.getElementById('aov').value) || 0;
+const abandonment = parseFloat(document.getElementById('abandonment').value) || 0;
+
+const monthlyOrders = visitors * (conversion / 100);
+const monthlyRevenue = monthlyOrders * aov;
+const abandonedCarts = monthlyOrders * (abandonment / (100 - abandonment));
+const abandonedValue = abandonedCarts * aov;
+const recovered = abandonedValue * 0.2;
+
+const supportSavings = monthlyRevenue * 0.05;
+const totalImpact = supportSavings + recovered;
+const aiCost = 82500;
+const netBenefit = totalImpact - aiCost;
+const roi = ((netBenefit / aiCost) * 100).toFixed(0);
+
+document.getElementById('support-savings').textContent = formatMoney(supportSavings);
+document.getElementById('recovered').textContent = formatMoney(recovered);
+document.getElementById('total-impact').textContent = formatMoney(totalImpact);
+document.getElementById('net-benefit').textContent = formatMoney(netBenefit);
+document.getElementById('roi').textContent = roi + '%';
+}
+
+calculate();
+</script>
+</body>
+</html>

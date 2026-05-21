@@ -1,0 +1,9 @@
+GitHub API calls from the terminal often time out for this environment. When creating new repos, prefer asking the user to create them manually via github.com, then push afterward. The token works fine for git push operations, just not for GitHub REST API calls.
+§
+WhatsApp platform: No markdown rendering. Use plain text only. Send media files with MEDIA:/path/to/file syntax.
+§
+User's content strategy for Axovion: TOF/MOF/BOF reel funnel. TOF hooks must be pain-first, specific, dangerous, financially intelligent — NOT product-demo or "look at my AI." Authority before personality. First 10-15 posts build competence, positioning, perceived intelligence, technical legitimacy. Then personality. AI is the mechanism, not the sell. Sell: response speed, operational reliability, captured intent, reduced leakage, revenue continuity. Content must sound like "this person understands revenue mechanics better than me." Visuals: dashboards, call logs, CRM pipelines, timestamps, terminal screens, dark UI — operational and expensive, not generic B-roll or talking head only.
+§
+User's content quality bar is extremely high. When writing scripts, hooks, or marketing copy, default to "expensive" not "educated" — specific observations that create financial tension, not generic claims. Avoid defensive language ("not a pitch," "follow for more"), algorithm-aware CTAs ("DM me 'leak'"), and content-creator framing. End with observations, not requests. First 10-15 posts must build competence, positioning, perceived intelligence, and technical legitimacy before any personality or founder story. User will push back hard on anything that sounds like "AI agency Twitter" or "Instagram marketer."
+§
+GitHub PAT for joking-really: ***REDACTED*** — saved permanently. Use this for all git push operations to github.com/joking-really repos. Do NOT ask for token again.
